@@ -1,0 +1,57 @@
+<h4>Add Employee</h4>
+<form [formGroup]="userform" >
+    <div class="form-group">
+
+      <label>Name</label>
+      <input type="text" class="form-control" placeholder="Enter name" formControlName="name"
+      [ngClass]="{'is-invalid' : userform.controls['name'].invalid && (isSubmitted || userform.controls['name'].touched || userform.controls['name'].dirty),
+    'is-valid' : userform.controls['name'].valid && (isSubmitted || userform.controls['name'].touched || userform.controls['name'].dirty)}"
+    >
+    <div *ngIf="userform.controls['name'].invalid && (isSubmitted || userform.controls['name'].touched || userform.controls['name'].dirty)">
+        <p class="text-danger" *ngIf="userform.controls['name'].errors?.['required']">Name is required.</p>
+        <p class="text-danger" *ngIf="userform.controls['name'].errors?.['minlength']">Name have minimum length of 3 charecter.</p>
+    </div>
+      </div>
+
+    <div class="form-group">
+
+      <label>Gender</label>
+      <input type="text" class="form-control" placeholder="Enter gender" formControlName="gender"
+      [ngClass]="{'is-invalid' : userform.controls['gender'].invalid && (isSubmitted || userform.controls['gender'].touched || userform.controls['gender'].dirty),
+    'is-valid' : userform.controls['gender'].valid && (isSubmitted || userform.controls['gender'].touched || userform.controls['gender'].dirty)}"
+    >
+    <div *ngIf="userform.controls['gender'].invalid && (isSubmitted || userform.controls['gender'].touched || userform.controls['gender'].dirty)">
+        <p class="text-danger" *ngIf="userform.controls['gender'].errors?.['required']">Gender is required.</p>
+        <p class="text-danger" *ngIf="userform.controls['gender'].errors?.['pattern']">Add only characters in gender field.</p>
+    </div>
+    </div>
+
+    <div class="form-group">
+
+        <label>Date of Birth</label>
+        <input type="date" class="form-control" placeholder="Enter Date of Birth" formControlName="dob"
+        [ngClass]="{'is-invalid' : userform.controls['dob'].invalid && (isSubmitted || userform.controls['dob'].touched || userform.controls['dob'].dirty),
+      'is-valid' : userform.controls['dob'].valid && (isSubmitted || userform.controls['dob'].touched || userform.controls['dob'].dirty)}"
+      >
+      <div *ngIf="userform.controls['dob'].invalid && (isSubmitted || userform.controls['dob'].touched || userform.controls['dob'].dirty)">
+          <p class="text-danger" *ngIf="userform.controls['dob'].errors?.['required']">Date of Birth is required.</p>
+      </div>
+      </div>
+
+
+      <div class="form-group">
+
+        <label>Salary</label>
+        <input type="text" class="form-control" placeholder="Enter salary" formControlName="salary"
+        [ngClass]="{'is-invalid' : userform.controls['salary'].invalid && (isSubmitted || userform.controls['salary'].touched || userform.controls['salary'].dirty),
+      'is-valid' : userform.controls['salary'].valid && (isSubmitted || userform.controls['salary'].touched || userform.controls['salary'].dirty)}"
+      >
+      <div *ngIf="userform.controls['salary'].invalid && (isSubmitted || userform.controls['salary'].touched || userform.controls['salary'].dirty)">
+          <p class="text-danger" *ngIf="userform.controls['salary'].errors?.['required']">Date of Birth is required.</p>
+          <p class="text-danger" *ngIf="userform.controls['salary'].errors?.['pattern']">Add only numbers in Salary field.</p>
+      </div>
+      </div>
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+    <button type="submit" class="btn btn-primary" (click)="onReset()">Reset</button>
+</form>
+<app-employee-list [userlist]="userdata" (displaydata)="displaydata($event)"></app-employee-list>
